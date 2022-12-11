@@ -1,11 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-body{
+.btn-close {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.25em 0.25em;
+  color: #000;
+  background: transparent
+    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+    center/1em auto no-repeat;
+  border: 0;
+  border-radius: 0.25rem;
+  opacity: 0.5;
+}
+.alert-danger {
+  color: #842e29;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+.alert-dismissible {
+  padding-right: 3 rem;
+}
+.alert {
+  position: relative;
+  padding: 1rem 1em;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.fade {
+  transition: opacity 0.15s linear;
+}
+
+body {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -13,21 +45,22 @@ body{
   padding: 10px;
   background: linear-gradient(135deg, #3aa2e7, #b851e0);
 }
-.container{
+
+.container {
   max-width: 700px;
   width: 100%;
   background-color: #fff;
   padding: 25px 30px;
   border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
-.container .title{
+.container .title {
   font-size: 25px;
   margin: 3px;
   font-weight: 500;
   position: relative;
 }
-.container .title::before{
+.container .title::before {
   content: "";
   position: absolute;
   left: 0;
@@ -37,22 +70,22 @@ body{
   border-radius: 5px;
   background: linear-gradient(135deg, #3aa2e7, #b851e0);
 }
-.content form .user-details{
+.content form .user-details {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 12px 0;
 }
-form .user-details .input-box{
+form .user-details .input-box {
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
 }
-form .input-box span.details{
+form .input-box span.details {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
 }
-.user-details .input-box input{
+.user-details .input-box input {
   height: 45px;
   width: 100%;
   outline: none;
@@ -64,26 +97,26 @@ form .input-box span.details{
   transition: all 0.3s ease;
 }
 .user-details .input-box input:focus,
-.user-details .input-box input:valid{
+.user-details .input-box input:valid {
   border-color: #b851e0;
 }
- form .gender-details .gender-title{
+form .gender-details .gender-title {
   font-size: 20px;
   font-weight: 500;
- }
- form .category{
-   display: flex;
-   width: 67%;
-   margin: 14px 0 ;
-   justify-content: space-between;
- }
+}
+form .category {
+  display: flex;
+  width: 67%;
+  margin: 14px 0;
+  justify-content: space-between;
+}
 
- form .category label{
-   display: flex;
-   align-items: center;
-   cursor: pointer;
- }
- form .category label .dot{
+form .category label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+form .category label .dot {
   height: 18px;
   width: 18px;
   border-radius: 50%;
@@ -93,80 +126,79 @@ form .input-box span.details{
   transition: all 0.3s ease;
 }
 
- #dot-1:checked ~ .category label .one,
- #dot-2:checked ~ .category label .two,
- #dot-3:checked ~ .category label .three{
-   background: #b851e0;
-   border-color: #d9d9d9;
- }
- form input[type="radio"]{
-   display: none;
- }
- form .Register-button{
-   height: 45px;
-   margin: 35px ;
- }
- form .Register-button input{
-   height: 100%;
-   width: 100%;
-   border-radius: 5px;
-   border: none;
-   color: #fff;
-   font-size: 18px;
-   font-weight: 500;
-   letter-spacing: 1px;
-   cursor: pointer;
-   transition: all 0.3s ease;
-   background: linear-gradient(135deg, #3aa2e7, #b851e0);
- }
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two {
+  background: #b851e0;
+  border-color: #d9d9d9;
+}
+form input[type="radio"] {
+  display: none;
+}
+form .Register-button {
+  height: 45px;
+  margin: 35px;
+}
+form .Register-button input {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #3aa2e7, #b851e0);
+}
 
- form .Register-button input:hover{
+form .Register-button input:hover {
   transform: scale(0.99);
   background: linear-gradient(-135deg, #3aa2e7, #b851e0);
-  }
+}
 
-  /* Move to right */
-.container .Log-in-button{
-    height: 20px;
-    margin: 70px ;
+/* Move to right */
+.container .Log-in-button {
+  height: 20px;
+  margin: 70px;
 }
-.container .Log-in-button input{
-    height: 100%;
-    width: 80%;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    background: #d9d9d9;
-    text-align: center;
+.container .Log-in-button input {
+  height: 100%;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #d9d9d9;
+  text-align: center;
 }
-.container .Log-in-button input:hover{
-   transform: scale(0.99);
-   background: linear-gradient(-135deg, #3aa2e7, #b851e0);
+.container .Log-in-button input:hover {
+  transform: scale(0.99);
+  background: linear-gradient(-135deg, #3aa2e7, #b851e0);
 }
- @media(max-width: 584px){
- .container{
-  max-width: 100%;
-}
-form .user-details .input-box{
+@media (max-width: 584px) {
+  .container {
+    max-width: 100%;
+  }
+  form .user-details .input-box {
     margin-bottom: 15px;
     width: 100%;
   }
-  form .category{
+  form .category {
     width: 100%;
   }
-  .content form .user-details{
+  .content form .user-details {
     max-height: 300px;
     overflow-y: scroll;
   }
-  .user-details::-webkit-scrollbar{
+  .user-details::-webkit-scrollbar {
     width: 5px;
   }
-  }
-  @media(max-width: 459px){
-  .container .content .category{
+}
+@media (max-width: 459px) {
+  .container .content .category {
     flex-direction: column;
   }
 }
