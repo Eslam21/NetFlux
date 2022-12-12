@@ -12,11 +12,12 @@ CREATE TABLE IF NOT EXISTS user (
 """
 
 #eslam
+#mariam trial 
 
 from flask import Flask, render_template , request , redirect , flash
 import pymysql
-import database_detail
-from waitress import serve
+import database_detail 
+from waitress import serve 
 
 conn = pymysql.connect(
     host = database_detail.host,
