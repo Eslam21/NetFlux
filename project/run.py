@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS user (
 """
 
 
-#hi
 from flask import Flask, render_template , request , redirect , flash
 import pymysql
 import database_detail
