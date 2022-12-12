@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS user (
     PRIMARY KEY (USERID));
 """
 
-
 from flask import Flask, render_template , request , redirect , flash
 import pymysql
 import database_detail
