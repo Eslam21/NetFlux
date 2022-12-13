@@ -1,5 +1,15 @@
 from flask import Flask, render_template , request , redirect , flash
 
+import mysql.connector
+mydb = mysql.connector.connect(user='root', password='147258369',
+                              host='127.0.0.1',
+                              database='netflux')
+
+mycursor = mydb.cursor()
+
+
+
+
 
 app = Flask(__name__, static_folder='Front-End/static',template_folder="Front-End/templates")
 
