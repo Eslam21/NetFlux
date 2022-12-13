@@ -7,10 +7,6 @@ mydb = mysql.connector.connect(user='root', password='147258369',
 
 mycursor = mydb.cursor()
 
-
-
-
-
 app = Flask(__name__, static_folder='Front-End/static',template_folder="Front-End/templates")
 
 @app.route("/")
