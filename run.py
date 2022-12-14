@@ -1,11 +1,9 @@
-from flask import Flask, render_template , request , redirect , flash
+from flask import Flask, render_template , request , redirect , flash ,url_for, session
 
 import mysql.connector
-mydb = mysql.connector.connect(user='root', password='147258369',
-                              host='127.0.0.1',
-                              database='netflux')
+connection = mysql.connector.connect(user='root', password='Storemagic2002$',host='localhost',database='netflex')
 
-mycursor = mydb.cursor()
+cursor = connection.cursor()
 
 
 
@@ -20,8 +18,24 @@ def home():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    massage=''
+    if request.method == 'POST':
+        username = request.form['Username']
+        password = request.form['Password']
+        cursor.execute('SELECT * FROM users WHERE username=%s AND password=%s', (username, password))
+        record = cursor.fetchone()
+        if record != None:
+            #create a session 
+            #session['loggedin'] = True
+            #session['username'] = record['username']
+            massage ="Login a Success!"
+            return redirect(url_for('home'))
+        else:
+            massage ="Incorrect username or password. Try again!"
+            print(massage)
     
-    return render_template('login.html')
+    return render_template('login.html', msg= massage)
+
 
 
 @app.route("/registration", methods=["GET", "POST"])
