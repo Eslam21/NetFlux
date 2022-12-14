@@ -5,10 +5,6 @@ connection = mysql.connector.connect(user='root', password='Storemagic2002$',hos
 
 cursor = connection.cursor()
 
-
-
-
-
 app = Flask(__name__, static_folder='Front-End/static',template_folder="Front-End/templates")
 
 @app.route("/")
