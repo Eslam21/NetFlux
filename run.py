@@ -40,21 +40,25 @@ def registration():
     return render_template('registration.html')
 
 
-@app.route("/favorite")
+@app.route("/favorite" ,  methods=["GET", "POST"])
 def favorite():
     return render_template('favorite.html')
 
-@app.route("/history")
+@app.route("/history" ,  methods=["GET", "POST"])
 def history():
     return render_template('history.html')
 
-@app.route("/recommended")
+@app.route("/recommended" ,  methods=["GET", "POST"])
 def recommended():
     return render_template('recommended.html')
 
-@app.route("/watch_list")
+@app.route("/watch_list" ,  methods=["GET", "POST"])
 def watch_list():
     return render_template('watch_list.html')
+
+@app.route("/profile-page",  methods=["GET", "POST"])
+def open_profile():
+    return render_template('profile-page')
 
 if __name__ == "__main__":
     app.run(debug=True)
