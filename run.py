@@ -1,7 +1,7 @@
 from flask import Flask, render_template , request , redirect , flash ,url_for, session
 
 import mysql.connector
-connection = mysql.connector.connect(user='root', password='Storemagic2002$',host='localhost',database='netflex')
+connection = mysql.connector.connect(user='root', password='Storemagic2002$',host='localhost',database='netflux')
 
 cursor = connection.cursor()
 
@@ -36,8 +36,28 @@ def login():
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
-   
-    return render_template('registration.html')
+    ''''
+    massage=''
+    if request.method == 'POST':
+        fullname = request.form['name']
+        firstname = fullname.split(' ')[0]
+        secondname = fullname.split(' ')[0]
+        username = request.form['username']
+        email = request.form['email']
+        phonenumber = request.form['number']
+        password = request.form['password']
+        confirmpassword = request.form['confirmPassword']
+        gender = request.form['Gender']
+        cursor.execute('SELECT * FROM accounts WHERE username = % s', (username))
+        account = cursor.fetchone()
+        if account:
+            msg = 'Account already exists !'
+        else:
+            cursor.execute('INSERT INTO users VALUES (%s, %s, %s, %s, %s, %s)', (username , firstname, secondname, email, password,gender ))
+            mysql.connection.commit()
+            msg = 'You have successfully registered !'
+    '''
+    return render_template('registration.html', msg= massage)
 
 
 @app.route("/favorite" ,  methods=["GET", "POST"])
@@ -49,7 +69,7 @@ def history():
     return render_template('history.html')
 
 @app.route("/recommended" ,  methods=["GET", "POST"])
-def recommended():
+def recommended(): 
     return render_template('recommended.html')
 
 @app.route("/watch_list" ,  methods=["GET", "POST"])
