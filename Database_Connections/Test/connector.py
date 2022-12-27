@@ -1,15 +1,14 @@
 import mysql.connector
-mydb = mysql.connector.connect(user='root', password='147258369',
+mydb = mysql.connector.connect(user='SWE', password='123456789',
                               host='127.0.0.1',
-                              database='netflux')
+                          database='world')
+
 cursor = mydb.cursor()
 
-
-
 mycursor = mydb.cursor()
-mycursor.execute(f"SELECT * FROM user ")
+mycursor.execute(f"SELECT * FROM city ")
 
-myresult = mycursor.fetchmany(2)
+myresult = mycursor.fetchall()
 print(myresult)
 # email=str(input("Enter Email: "))
 # if myresult == None:
