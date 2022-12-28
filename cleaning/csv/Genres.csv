@@ -5238,9 +5238,6 @@ id,genres
 8697,action
 8697,comedy
 8697,thriller
-5511,crime
-5511,drama
-5511,thriller
 21348,fantasy
 21348,adventure
 21348,animation
@@ -9828,9 +9825,6 @@ id,genres
 109091,thriller
 109091,crime
 109091,drama
-152795,drama
-152795,science fiction
-152795,animation
 146015,thriller
 146015,drama
 76203,drama
@@ -11439,11 +11433,6 @@ id,genres
 325848,comedy
 335866,horror
 335866,science fiction
-4912,comedy
-4912,crime
-4912,drama
-4912,romance
-4912,thriller
 257445,adventure
 257445,horror
 257445,comedy
@@ -12345,7 +12334,5 @@ id,genres
 417320,comedy
 417320,music
 417320,adventure
-265189,comedy
-265189,drama
 277839,comedy
 248705,comedy
