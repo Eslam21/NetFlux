@@ -9,7 +9,8 @@
 <p> <span id="other_data"></span> </p>
 <div id="slideContainer"></div>
 <script>
-    var user = JSON.parse('{{ user | tojson | safe}}');
+  
+    var user = JSON.parse('{{ barColors | tojson | safe}}');
     document.getElementById('username').innerHTML=user.firstname + " " +
             user.lastname;
             
@@ -17,7 +18,7 @@
 
     var str = '<ul>'
 
-      user.Age.forEach(function(slide) {
+      user.forEach(function(slide) {
         str += '<li>'+ slide + '</li>';
       }); 
       
