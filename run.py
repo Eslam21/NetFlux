@@ -19,25 +19,19 @@ def login():
     if request.method == 'POST':
         username = request.form['Username']
         password = request.form['Password']
-        cursor.execute('SELECT * FROM users WHERE username=%s AND password=%s', (username, password))
+        cursor.execute('SELECT * FROM persons WHERE userid=%s AND password=%s', (username, password))
         record = cursor.fetchone()
         if record != None:
-            #create a session 
-            #session['loggedin'] = True
-            #session['username'] = record['username']
             massage ="Login a Success!"
             return redirect(url_for('home'))
         else:
             massage ="Incorrect username or password. Try again!"
-            print(massage)
-    
     return render_template('login.html', msg= massage)
 
 
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
-    ''''
     massage=''
     if request.method == 'POST':
         fullname = request.form['name']
@@ -45,19 +39,21 @@ def registration():
         secondname = fullname.split(' ')[0]
         username = request.form['username']
         email = request.form['email']
-        phonenumber = request.form['number']
         password = request.form['password']
         confirmpassword = request.form['confirmPassword']
         gender = request.form['Gender']
-        cursor.execute('SELECT * FROM accounts WHERE username = % s', (username))
-        account = cursor.fetchone()
-        if account:
-            msg = 'Account already exists !'
+
+        if password != confirmpassword:
+            massage = 'The passwords do not match, please try again'
         else:
-            cursor.execute('INSERT INTO users VALUES (%s, %s, %s, %s, %s, %s)', (username , firstname, secondname, email, password,gender ))
-            mysql.connection.commit()
-            msg = 'You have successfully registered !'
-    '''
+            try:
+                cursor.execute('INSERT INTO persons (userid, first_name, last_name, email, password, gender) VALUES (%s, %s, %s, %s, %s, %s)', (username , firstname, secondname, email, password,gender ))
+                connection.commit()
+                massage = 'You have successfully registered !'
+                return redirect(url_for('home'))
+            except:
+                massage = 'Account already exists !'
+            
     return render_template('registration.html', msg= massage)
 
 

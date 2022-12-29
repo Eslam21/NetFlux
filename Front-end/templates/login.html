@@ -8,10 +8,6 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-  <script> 
-    let name = '{{ name }}'; 
-    alert('Hello, ' + name); 
-  </script> 
   <div class="container">
     <div class="screen">
       <div class="screen__content">
@@ -33,19 +29,23 @@
               value="Log in"
             />
           </div>
-
           <a href="registration" class="button create__submit">
-              <span class="button__text">Create an account</span>
-            </button>
-          </a>
-        </form>
+            <span class="button__text">Create an account</span>
+          </button>
+        </a>
+      </form>
+      {% if msg !='' and msg != 'Login a Success!'%}
+      <div class="error">{{msg}}</div>
+      {% endif %}
+      
         
       </div>
       <div class="screen__background">
         <span class="screen__background__shape screen__background__shape3"></span>		
         <span class="screen__background__shape screen__background__shape2"></span>
         <span class="screen__background__shape screen__background__shape1"></span>
-      </div>		
+      </div>	
+      
     </div>
   </div>
 </body>

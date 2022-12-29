@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    
     <div class="container">
       <div class="title">Registration</div>
         <div class="content">
@@ -50,8 +51,8 @@
             </div>
             <div class="gender-details">
 
-              <input type="radio" name="Gender" id="dot-1" value="Male" />
-              <input type="radio" name="Gender" id="dot-2" value="Female" />
+              <input type="radio" name="Gender" id="dot-1" value="M" required/>
+              <input type="radio" name="Gender" id="dot-2" value="F" required/>
               <span class="gender-title">Gender</span>
 
               <div class="category">
@@ -68,6 +69,9 @@
                 
               </div>
             </div>
+            {% if msg !='' and msg != 'You have successfully registered !'%}
+            <div class="error">{{msg}}</div>
+            {% endif %}
 
           <div class="Register-button">
             <input type="submit" value="Register">
@@ -77,9 +81,14 @@
           
           <a href="login" class="Log-in-button">
           <input type="submit" value="I have an account">
-
         </div>
+        
       </div>
     </div>
+    <script>
+      function showAlert() {
+        alert ("Hello world!");
+      }
+      </script>
   </body>
 </html>
