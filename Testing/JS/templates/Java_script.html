@@ -5,11 +5,12 @@
     <title>Hello, World</title>
 </head>
 <body>
-<p>Hello, <span id="username"></span></p>
+<p>Hello <span id="username"></span></p>
 <p> <span id="other_data"></span> </p>
 <div id="slideContainer"></div>
+<p> {{x}}</p>
 <script>
-    var user = JSON.parse('{{ user | tojson | safe}}');
+    //var user = JSON.parse('{{ user | tojson | safe}}');
     document.getElementById('username').innerHTML=user.firstname + " " +
             user.lastname;
             
