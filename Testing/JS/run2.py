@@ -1,20 +1,11 @@
-from flask import Flask, render_template, json 
- 
-app2 = Flask(__name__,template_folder="Front-End/templates") 
- 
- 
-@app2.route('/') 
-def index2(): 
-    return render_template('Java_script.html') 
- 
+from flask import Flask, render_template
 
-@app2.route('/api/<name>/') 
-def api_get_name(name): 
-    return json.jsonify({ 
-        'name': name 
-    }) 
- 
+app = Flask(__name__)
 
+@app.route('/')
+def hello_world():
+    user = {'firstname': 'Harry', 'lastname': 'Potter', "Age":[18,27,33,88,5]}
+    return render_template("Java_script.html", user=user)
 
-if __name__ == '__main__': 
-    app2.run(debug=True) 
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,24 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Page Title Goes Here</title>
-  <meta name="description" content="Description Goes Here">
-  
+    <meta charset="UTF-8">
+    <title>Hello, World</title>
 </head>
 <body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
- 
-<script> 
-    let name = prompt("Enter a name : "); 
-    $.ajax({ 
-        url: "/api/" + name + "/" 
-    }).done(function(res) { 
-        alert(res.name); 
-    }); 
-</script>
+<p>Hello, <span id="username"></span></p>
+<p> <span id="other_data"></span> </p>
+<div id="slideContainer"></div>
+<script>
+    var user = JSON.parse('{{ user | tojson | safe}}');
+    document.getElementById('username').innerHTML=user.firstname + " " +
+            user.lastname;
+            
+    document.getElementById('other_data').innerHTML=user.Age;
 
-  // if scripts is required add:
-  <script src="js/scripts.js"></script>
+    var str = '<ul>'
+
+      user.Age.forEach(function(slide) {
+        str += '<li>'+ slide + '</li>';
+      }); 
+      
+      str += '</ul>';
+      document.getElementById("slideContainer").innerHTML = str;
+
+</script>
 </body>
 </html>
