@@ -9,14 +9,11 @@
 
 
 <script>
-    var xValues = JSON.parse('{{ xValues | tojson | safe}}');
-    document.getElementById('data').innerHTML=xValues;
- 
-    
-    var yValues = JSON.parse('{{ yValues | tojson | safe}}');
+    var xValues = JSON.parse('{{ movies | tojson | safe}}');
+   
+    var yValues = JSON.parse('{{ vote_average | tojson | safe}}');
 
     var barColors = JSON.parse('{{ barColors | tojson | safe}}');
-
 
 new Chart("myChart", {
   type: "bar",
