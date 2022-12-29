@@ -5,9 +5,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    user = {'firstname': 'Harry', 'lastname': 'Potter', "Age":[18,27,33,88,5]}
-    x = 10
-    return render_template("Java_script.html", user= user , x = type(x))
+
+    xValues = ["Italy", "France", "Spain", "USA", "Argentina","Mystical"]
+    yValues = [55, 49, 44, 24, 15,100]
+    barColors = ["red", "green","blue","orange","brown","purple"]
+    return render_template("visualize.html", xValues=xValues,yValues=yValues,barColors=barColors)
 
 
 if __name__ == '__main__':
