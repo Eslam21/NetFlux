@@ -32,9 +32,8 @@ def login():
 def registration():
     massage=''
     if request.method == 'POST':
-        fullname = request.form['name']
-        firstname = fullname.split(' ')[0]
-        secondname = fullname.split(' ')[0]
+
+        firstname,lastname= request.form['name'].split(' ')
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
@@ -46,7 +45,7 @@ def registration():
             massage = 'The passwords do not match, please try again'
         else:
             try:
-                cursor.execute('INSERT INTO persons (userid, first_name, last_name, email, password, gender,phone_number) VALUES (%s, %s, %s, %s, %s, %s,%s)', (username , firstname, secondname, email, password,gender,phone_number))
+                cursor.execute('INSERT INTO persons (userid, first_name, last_name, email, password, gender,phone_number) VALUES (%s, %s, %s, %s, %s, %s,%s)', (username , firstname, lastname, email, password,gender,phone_number))
                 connection.commit()
                 massage = 'You have successfully registered !'
                 return redirect(url_for('home'))
