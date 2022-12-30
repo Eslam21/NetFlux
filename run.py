@@ -6,7 +6,10 @@ connection = mysql.connector.connect(user='SWE', password='123456789000',host='l
 
 cursor = connection.cursor()
 
+#flash uses secret key
+
 app = Flask(__name__, static_folder='Front-End/static',template_folder="Front-End/templates")
+app.secret_key = 'keep the secret!'
 
 @app.route("/")
 @app.route("/home")
@@ -15,18 +18,21 @@ def home():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    massage=''
+    
     if request.method == 'POST':
         username = request.form['Username']
         password = request.form['Password']
         cursor.execute('SELECT * FROM persons WHERE userid=%s AND password=%s', (username, password))
         record = cursor.fetchone()
         if record != None:
-            massage ="Login a Success!"
+            message ="Login a Success!"
+            flash(message)
             return redirect(url_for('home'))
         else:
-            massage ="Incorrect username or password. Try again!"
-    return render_template('login.html', msg= massage)
+            message ="Incorrect username or password. Try again!"
+            flash(message)
+            return redirect(url_for('login'))
+    return render_template('login.html')
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
