@@ -2,7 +2,7 @@
 from flask import Flask, render_template , request , redirect , flash ,url_for, session
 
 import mysql.connector
-connection = mysql.connector.connect(user='root', password='Storemagic2002$',host='localhost',database='netflux')
+connection = mysql.connector.connect(user='root', password='147258369',host='localhost',database='netflux')
 
 cursor = connection.cursor()
 
@@ -28,8 +28,6 @@ def login():
             massage ="Incorrect username or password. Try again!"
     return render_template('login.html', msg= massage)
 
-
-
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
     massage=''
@@ -42,12 +40,13 @@ def registration():
         password = request.form['password']
         confirmpassword = request.form['confirmPassword']
         gender = request.form['Gender']
+        phone_number=request.form['phone_number']
 
         if password != confirmpassword:
             massage = 'The passwords do not match, please try again'
         else:
             try:
-                cursor.execute('INSERT INTO persons (userid, first_name, last_name, email, password, gender) VALUES (%s, %s, %s, %s, %s, %s)', (username , firstname, secondname, email, password,gender ))
+                cursor.execute('INSERT INTO persons (userid, first_name, last_name, email, password, gender,phone_number) VALUES (%s, %s, %s, %s, %s, %s,%s)', (username , firstname, secondname, email, password,gender,phone_number))
                 connection.commit()
                 massage = 'You have successfully registered !'
                 return redirect(url_for('home'))
@@ -69,13 +68,15 @@ def history():
 def recommended(): 
     return render_template('recommended.html')
 
-@app.route("/watch_list" ,  methods=["GET", "POST"])
+@app.route("/watchlist" ,  methods=["GET", "POST"])
 def watch_list():
     return render_template('watch_list.html')
 
-@app.route("/profile-page",  methods=["GET", "POST"])
+@app.route("/profile-stat",  methods=["GET", "POST"])
 def open_profile():
-    return render_template('profile-page2.html')
+    return render_template('profile-stat.html')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
