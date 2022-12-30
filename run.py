@@ -75,7 +75,7 @@ def watch_list():
 
 @app.route("/profile-page",  methods=["GET", "POST"])
 def open_profile():
-    return render_template('profile-page.html')
+    return render_template('profile-page2.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
