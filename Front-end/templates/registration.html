@@ -69,9 +69,16 @@
                 
               </div>
             </div>
-            {% if msg !='' and msg != 'You have successfully registered !'%}
-            <div class="error">{{msg}}</div>
-            {% endif %}
+
+            {% with msg = get_flashed_messages() %}
+            {% if msg %} 
+      
+              {% for message in msg %}
+              {{message}}
+              {% endfor %}
+              
+            {% endif %} 
+            {% endwith %}
 
           <div class="Register-button">
             <input type="submit" value="Register">
@@ -85,10 +92,5 @@
         
       </div>
     </div>
-    <script>
-      function showAlert() {
-        alert ("Hello world!");
-      }
-      </script>
-  </body>
+   
 </html>

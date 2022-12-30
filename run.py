@@ -21,7 +21,6 @@ def home():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    massage = ""
     if request.method == "POST":
         username = request.form["Username"]
         #password the user entered, still needs to be checked
@@ -32,22 +31,21 @@ def login():
         )
         
         #fetch the hahsed password of the user
-        hashed_pass = cursor.fetchone()[0]
+        result = cursor.fetchone()
+       
         # check if this account exists and the password matches
-        if hashed_pass != None and bcrypt.checkpw(password,hashed_pass.encode('utf-8')):
-            massage = "Login a Success!"
-            flash(massage)
+        if result != None and bcrypt.checkpw(password,result[0].encode('utf-8')):
             return redirect(url_for("home"))
         
         else:
-            massage = "Incorrect username or password. Try again!"
-            flash(massage)
+            msg = "Incorrect username or password. Try again!"
+            flash(msg)
             
     return render_template("login.html")
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
-    massage = ""
+    msg = ""
     if request.method == "POST":
 
         firstname, lastname = request.form["name"].split(" ")
@@ -60,7 +58,8 @@ def registration():
     
 
         if password != confirmpassword:
-            massage = "The passwords do not match, please try again"
+            msg = "The passwords do not match, please try again"
+            flash(msg)
         else:
             try:
                 # Hash a password for the first time, with a randomly-generated salt
@@ -78,12 +77,13 @@ def registration():
                     ),
                 )
                 connection.commit()
-                massage = "You have successfully registered !"
+                msg = "You have successfully registered !"
                 return redirect(url_for("home"))
             except:
-                massage = "Account already exists !"
+                msg = "Account already exists !"
+                flash(msg)
 
-    return render_template("registration.html", msg=massage)
+    return render_template("registration.html")
 
 
 @app.route("/favorite", methods=["GET", "POST"])
