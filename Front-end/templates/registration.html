@@ -18,6 +18,7 @@
 
         {% for message in msg %}
         <div class="error">{{ message }}</div>
+        
         {% endfor %}
         
       {% endif %} 
@@ -78,10 +79,10 @@
                 
               </div>
             </div>
-
+             <h4 id="error" style= "color:red"> </h4>
             
             <div class="Register-button">
-              <input type="submit" value="Register">
+              <input type="submit" value="Register" name ="submit" id="checked" onclick=" checkButton()">
             </div>
             
           </form>
@@ -92,5 +93,16 @@
         
       </div>
     </div>
-   
+   </body>
+
+   <script>  
+    function checkButton() {   
+                if(!(document.getElementById("dot-1").checked) && !(document.getElementById("dot-2").checked)) {   
+                  document.getElementById("error").innerHTML   
+                        = "Please select your gender";    
+                }   
+               
+            }   
+        </script>
+
 </html>

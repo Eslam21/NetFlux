@@ -58,12 +58,11 @@ def registration():
         phone_number = request.form["phone_number"]
     
 
+
         if password != confirmpassword:
             msg = "The passwords do not match, please try again"
             flash(msg)
-        elif gender == None:
-            msg = "Please select your gender"
-            flash(msg)
+            return redirect(url_for("registration")) 
         else:
             try:
                 # Hash a password for the first time, with a randomly-generated salt
