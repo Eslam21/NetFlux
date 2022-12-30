@@ -34,11 +34,7 @@
           </button>
         </a>
       </form>
-      <!--freeze
-      {% if msg !='' and msg != 'Login a Success!'%}
-      <div class="error">{{msg}}</div>
-      {% endif %}
-      -->
+  
       {% with msg = get_flashed_messages() %}
       {% if msg %} 
 

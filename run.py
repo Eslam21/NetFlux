@@ -40,6 +40,7 @@ def login():
         else:
             msg = "Incorrect username or password. Try again!"
             flash(msg)
+            return redirect(url_for("login"))
             
     return render_template("login.html")
 
@@ -59,6 +60,9 @@ def registration():
 
         if password != confirmpassword:
             msg = "The passwords do not match, please try again"
+            flash(msg)
+        elif gender == None:
+            msg = "Please select your gender"
             flash(msg)
         else:
             try:
@@ -82,6 +86,7 @@ def registration():
             except:
                 msg = "Account already exists !"
                 flash(msg)
+                return redirect(url_for("registration")) 
 
     return render_template("registration.html")
 
