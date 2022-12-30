@@ -2,7 +2,7 @@
 from flask import Flask, render_template , request , redirect , flash ,url_for, session
 
 import mysql.connector
-connection = mysql.connector.connect(user='root', password='147258369',host='localhost',database='netflux')
+connection = mysql.connector.connect(user='SWE', password='123456789000',host='localhost',database='netflux')
 
 cursor = connection.cursor()
 
