@@ -13,8 +13,8 @@ cursor = connection.cursor()
 cursor.execute("SELECT title FROM movies")
 
 
-similar=process.extract("space",choices=list(map(lambda movies: movies[0],cursor.fetchall())),limit=None)
+similar=process.extract("fuck",choices=list(map(lambda movies: movies[0],cursor.fetchall())),limit=None)
 similar.sort(reverse = True, key = lambda t: t[1])
 
 movies=[movie[0] for movie in similar]
-print(len(movies))
+print(movies[0:11])
