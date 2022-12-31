@@ -111,8 +111,12 @@ def watch_list():
 
 
 @app.route("/profile-stat", methods=["GET", "POST"])
-def open_profile():
+def open_stat():
     return render_template("profile-stat.html")
+
+@app.route("/profile-page", methods=["GET", "POST"])
+def open_profile():
+    return render_template("profile-page.html")
 
 
 if __name__ == "__main__":
