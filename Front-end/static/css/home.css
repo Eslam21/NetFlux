@@ -18,6 +18,14 @@ body {
   color: #fff;
   font-size: 25px;
 }
+.myButton {
+  background-color: transparent;
+  border: none;
+  width: 32%;
+  font-size: 36px;
+  cursor: pointer;
+}
+
 .header .search {
   padding: 0.5rem 1rem;
   border-radius: 50px;
@@ -284,12 +292,35 @@ main {
   max-width: 100%;
   overflow: auto;
 }
-.movie:hover .overview {
+/* .movie:hover .overview {
   transform: translateY(0);
-}
+} */
+
 .overview h4 {
   margin-top: 0;
 }
+
+.ul-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  height: 50px;
+}
+.rating-container {
+  z-index: 99999;
+  margin: 5px 0;
+  gap: 2px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.star-heading {
+  font-size: 18px;
+  color: #fff;
+}
+
 @media only screen and (max-width: 1200px) {
   .header .container {
     width: 1000px;
