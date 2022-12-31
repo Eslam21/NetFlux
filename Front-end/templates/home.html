@@ -90,12 +90,20 @@
             <div class="login">Profile</div>
           </div>
         </a>
-
+        {% if 'username' not in session %}
         <a href="login">
           <div class="user-actions">
             <div class="login">Log in</div>
           </div>
         </a>
+        {% else %}
+        <a href="logout">
+          <div class="user-actions">
+            <div class="login">Log out</div>
+          </div>
+        </a>
+        {% endif %}
+
         <label class="openmenu">
           <ion-icon name="menu-outline"></ion-icon>
         </label>

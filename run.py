@@ -35,6 +35,7 @@ def login():
        
         # check if this account exists and the password matches
         if result != None and bcrypt.checkpw(password,result[0].encode('utf-8')):
+            session['username'] = username
             return redirect(url_for("home"))
         
         else:
@@ -43,6 +44,12 @@ def login():
             return redirect(url_for("login"))
             
     return render_template("login.html")
+
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    session.pop('username', None) 
+    return render_template("home.html")
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
@@ -81,6 +88,7 @@ def registration():
                 )
                 connection.commit()
                 msg = "You have successfully registered !"
+                session['username'] = username
                 return redirect(url_for("home"))
             except:
                 msg = "Account already exists !"
