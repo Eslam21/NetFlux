@@ -7,9 +7,9 @@
     <title>Home | Netflux</title>
     <link
       rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='css/home.css')}}"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="home.css" />
   </head>
   <body>
     <header class="header">
@@ -17,17 +17,17 @@
         <div class="logo">Netflux</div>
 
         <nav class="menu">
-          <a href="">
+          <a href="liked">
             <ion-icon name="heart-outline"></ion-icon>
             Favorite
           </a>
 
-          <a href="">
+          <a href="watch_list">
             <ion-icon name="bookmark-outline"></ion-icon>
             Watch List
           </a>
 
-          <a href="">
+          <a href="watched">
             <ion-icon name="reload-outline"></ion-icon>
             History
           </a>
@@ -103,11 +103,11 @@
         </label>
       </div>
       <nav class="menu">
-        <a href=""> Loved Movies </a>
+        <a href="liked"> Loved Movies </a>
 
-        <a href=""> Saved Movies </a>
+        <a href="watch_list"> Saved Movies </a>
 
-        <a href=""> History </a>
+        <a href="watched"> History </a>
       </nav>
       <a href="login">
         <div class="user-actions">
@@ -115,9 +115,11 @@
         </div>
       </a>
     </div>
+
     <main id="main"></main>
+
     <!-- JS CODE -->
-    <script src="{{url_for('static', filename='js/home.js')}}"></script>
+    <script src="home.js"></script>
 
     <!-- IMPORTS ICONS -->
     <script
