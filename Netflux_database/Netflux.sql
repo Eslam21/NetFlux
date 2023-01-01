@@ -176,6 +176,7 @@ CREATE TABLE `persons` (
   `birthday` date DEFAULT NULL,
   `person_type` enum('user','admin') DEFAULT 'user',
   `gender` enum('M','F') DEFAULT NULL,
+  `phone_number` varchar(13) NOT NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -278,4 +279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-29 14:23:36
+-- Dump completed on 2022-12-30  9:42:36

@@ -13,6 +13,16 @@
     
     <div class="container">
       <div class="title">Registration</div>
+      {% with msg = get_flashed_messages() %}
+      {% if msg %} 
+
+        {% for message in msg %}
+        <div class="error">{{ message }}</div>
+        
+        {% endfor %}
+        
+      {% endif %} 
+      {% endwith %}
         <div class="content">
           <form method="POST">
 
@@ -35,7 +45,7 @@
 
               <div class="input-box">
                 <span class="details">Phone Number</span>
-                <input type="text" name="number" placeholder="Enter your number" required/>
+                <input type="text" name="phone_number" placeholder="Enter your number" required/>
               </div>
               
               <div class="input-box">
@@ -69,26 +79,30 @@
                 
               </div>
             </div>
-            {% if msg !='' and msg != 'You have successfully registered !'%}
-            <div class="error">{{msg}}</div>
-            {% endif %}
-
-          <div class="Register-button">
-            <input type="submit" value="Register">
-          </div>
-          
+             <h4 id="error" style= "color:red"> </h4>
+            
+            <div class="Register-button">
+              <input type="submit" value="Register" name ="submit" id="checked" onclick=" checkButton()">
+            </div>
+            
           </form>
           
           <a href="login" class="Log-in-button">
-          <input type="submit" value="I have an account">
-        </div>
+            <input type="submit" value="I have an account">
+          </div>
         
       </div>
     </div>
-    <script>
-      function showAlert() {
-        alert ("Hello world!");
-      }
-      </script>
-  </body>
+   </body>
+
+   <script>  
+    function checkButton() {   
+                if(!(document.getElementById("dot-1").checked) && !(document.getElementById("dot-2").checked)) {   
+                  document.getElementById("error").innerHTML   
+                        = "Please select your gender";    
+                }   
+               
+            }   
+        </script>
+
 </html>

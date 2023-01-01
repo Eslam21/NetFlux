@@ -1,83 +1,131 @@
-
-from flask import Flask, render_template , request , redirect , flash ,url_for, session
-
+from flask import Flask, render_template, request, redirect, flash, url_for, session
+import bcrypt
 import mysql.connector
-connection = mysql.connector.connect(user='root', password='Storemagic2002$',host='localhost',database='netflux')
+
+connection = mysql.connector.connect(
+    user="SWE", password="123456789000", host="localhost", database="netflux"
+)
 
 cursor = connection.cursor()
 
+#flash uses secret key
+
 app = Flask(__name__, static_folder='Front-End/static',template_folder="Front-End/templates")
+app.secret_key = 'keep the secret!'
 
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template("home.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    massage=''
-    if request.method == 'POST':
-        username = request.form['Username']
-        password = request.form['Password']
-        cursor.execute('SELECT * FROM persons WHERE userid=%s AND password=%s', (username, password))
-        record = cursor.fetchone()
-        if record != None:
-            massage ="Login a Success!"
-            return redirect(url_for('home'))
+    if request.method == "POST":
+        username = request.form["Username"]
+        #password the user entered, still needs to be checked
+        password = request.form["Password"].encode('utf-8')
+        cursor.execute(
+            "SELECT password FROM persons WHERE userid=%s",
+            (username,)
+        )
+        
+        #fetch the hahsed password of the user
+        result = cursor.fetchone()
+       
+        # check if this account exists and the password matches
+        if result != None and bcrypt.checkpw(password,result[0].encode('utf-8')):
+            session['username'] = username
+            return redirect(url_for("home"))
+        
         else:
-            massage ="Incorrect username or password. Try again!"
-    return render_template('login.html', msg= massage)
+            msg = "Incorrect username or password. Try again!"
+            flash(msg)
+            return redirect(url_for("login"))
+            
+    return render_template("login.html")
 
 
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    session.pop('username', None) 
+    return render_template("home.html")
 
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
-    massage=''
-    if request.method == 'POST':
-        fullname = request.form['name']
-        firstname = fullname.split(' ')[0]
-        secondname = fullname.split(' ')[0]
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
-        confirmpassword = request.form['confirmPassword']
-        gender = request.form['Gender']
+    msg = ""
+    if request.method == "POST":
+
+        firstname, lastname = request.form["name"].split(" ")
+        username = request.form["username"]
+        email = request.form["email"]
+        password = request.form["password"]
+        confirmpassword = request.form["confirmPassword"]
+        gender = request.form["Gender"]
+        phone_number = request.form["phone_number"]
+    
+
 
         if password != confirmpassword:
-            massage = 'The passwords do not match, please try again'
+            msg = "The passwords do not match, please try again"
+            flash(msg)
+            return redirect(url_for("registration")) 
         else:
             try:
-                cursor.execute('INSERT INTO persons (userid, first_name, last_name, email, password, gender) VALUES (%s, %s, %s, %s, %s, %s)', (username , firstname, secondname, email, password,gender ))
+                # Hash a password for the first time, with a randomly-generated salt
+                hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt(rounds=12))
+                cursor.execute(
+                    "INSERT INTO persons (userid, first_name, last_name, email, password, gender,phone_number) VALUES (%s, %s, %s, %s, %s, %s,%s)",
+                    (
+                        username,
+                        firstname,
+                        lastname,
+                        email,
+                        hashed_password,
+                        gender,
+                        phone_number,
+                    ),
+                )
                 connection.commit()
-                massage = 'You have successfully registered !'
-                return redirect(url_for('home'))
+                msg = "You have successfully registered !"
+                session['username'] = username
+                return redirect(url_for("home"))
             except:
-                massage = 'Account already exists !'
-            
-    return render_template('registration.html', msg= massage)
+                msg = "Account already exists !"
+                flash(msg)
+                return redirect(url_for("registration")) 
+
+    return render_template("registration.html")
 
 
-@app.route("/favorite" ,  methods=["GET", "POST"])
+@app.route("/favorite", methods=["GET", "POST"])
 def favorite():
-    return render_template('favorite.html')
+    return render_template("favorite.html")
 
-@app.route("/history" ,  methods=["GET", "POST"])
+
+@app.route("/history", methods=["GET", "POST"])
 def history():
-    return render_template('history.html')
+    return render_template("history.html")
 
-@app.route("/recommended" ,  methods=["GET", "POST"])
-def recommended(): 
-    return render_template('recommended.html')
 
-@app.route("/watch_list" ,  methods=["GET", "POST"])
+@app.route("/recommended", methods=["GET", "POST"])
+def recommended():
+    return render_template("recommended.html")
+
+
+@app.route("/watchlist", methods=["GET", "POST"])
 def watch_list():
-    return render_template('watch_list.html')
+    return render_template("watch_list.html")
 
-@app.route("/profile-page",  methods=["GET", "POST"])
+
+@app.route("/profile-stat", methods=["GET", "POST"])
+def open_stat():
+    return render_template("profile-stat.html")
+
+@app.route("/profile-page", methods=["GET", "POST"])
 def open_profile():
-    return render_template('profile-page.html')
+    return render_template("profile-page.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-

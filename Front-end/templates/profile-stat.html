@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Registration Form in HTML CSS</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile-stat.css')}}">
+  </head>
+  <body>
+    <section class="container" style="width: 900px;">
+     
+      <header>My Proifle</header>
+      <div action="#" class="form">
+        <!--================================================================-->
+        <!-- Profile Photo -->
+        <div class="container" style="height: 170px;">
+          <div class="avatar-upload" >
+              <div class="avatar-preview">
+                  <div id="imagePreview" style="background-image: url('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');"> <!-- Change Value -->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--================================================================-->
+        </head>
+        <body>
+        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 40px;">Jana Mohammed</p> <!-- Change Value -->
+        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 25px;">Egypt</p> <!-- Change Value -->
+        <!-- Card One -->
+        <div class="column">
+          <div class = hello style="
+            background-color: #E4D9F7;
+            border-radius: 8px;
+            box-shadow: 10 20 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            color: #3A00A0;
+            padding: 50px; 
+            margin: 20px;
+            height: 270px;
+            font-size: 60px;
+            text-align: center;">
+            85<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Film Watched</strong></p>
+          </div>
+          <!-- Card Two -->
+          <div style="
+            background-color: #E4D9F7;
+            border-radius: 8px;
+            box-shadow: 10 20 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            color: #3A00A0;
+            padding: 50px; 
+            margin: 20px;
+            height: 270px;
+            font-size: 60px;
+            text-align: center;">
+            30<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Film Favorite</strong></p>
+          </div>
+          <!-- Card Three -->
+          <div style="
+            background-color: #E4D9F7;
+            border-radius: 8px;
+            box-shadow: 10 20 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            color: #3A00A0;
+            padding: 50px; 
+            margin: 20px;
+            height: 270px;
+            font-size: 60px;
+            text-align: center;">
+            100<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Hours Watched</strong></p>
+          </div>
+        </div>
+        <!--------------------------------------------------------->
+<!-- <html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Genre', 'Favourite', 'Not-Favourite'],
+          ['Action', 9, 18],
+          ['Science Fiction', 15, 25],
+          ['Horror', 19, 9],
+          ['Documentry', 22, 20],
+          ['Drama', 5, 30]
+        ]);
+        var options = {
+          chart: {
+            title: 'Genres of the watched films',
+            subtitle: 'Favourite, Not-Favourite',
+          }
+        };
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="columnchart_material" style="width: 750px; height: 500px;margin-left: 90px ;"></div>
+  </body>
+</html> -->
+<!--------------------------------------------------------->
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Genre', 'Number of Films'],
+          ['Action',     20],
+          ['Drama',      5],
+          ['Horror',  15],
+          ['Documentry', 20],
+          ['Science Fiction',    35]
+        ]);
+
+        var options = {
+          title: 'Genres Watched'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 800px; height: 500px; margin-left: 50px;"></div>
+  </body>
+</html>
+        <!-- Update profile information -->
+        <a href="profile-page">
+          <button style="margin-top:2.5em; width: 100px; margin-left: 350px;border-radius: 8px;">Edit Profile</button>
+        </a>
+        
+      </div>
+    </section>
+  </body>
+</html>
