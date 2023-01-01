@@ -10,6 +10,13 @@ cursor = connection.cursor()
 app = Flask(__name__)
 
 @app.route('/')
+@app.route("/home")
+def home():
+    return render_template("image.html")
+
+
+
+@app.route("/visualize")
 def hello_world():
 
     '''
