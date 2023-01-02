@@ -16,8 +16,8 @@ def home():
     
     cursor.execute("SELECT movieid FROM movies order by release_date desc limit 5")
     result=cursor.fetchall()
+    
     ids=movies = [i[0] for i in result]
-    print(ids)
     for i in range(0,len(ids)):
         
         getResponse = requests.get(f'https://api.themoviedb.org/3/movie/{ids[i]}?api_key=c0bda0be71f7815fd6ba2eb5f5c86fd8')# every movie has a unique ID 
