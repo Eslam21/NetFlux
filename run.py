@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, flash, url_for, session
 import bcrypt
 import mysql.connector
+import datetime
 
 connection = mysql.connector.connect(
     user="SWE", password="123456789000", host="localhost", database="netflux"
@@ -56,8 +57,10 @@ def registration():
     msg = ""
     if request.method == "POST":
 
-        firstname, lastname = request.form["name"].split(" ")
+        firstname = request.form["fname"]
+        lastname = request.form["lname"]
         username = request.form["username"]
+        birthday = request.form["Birthday"]
         email = request.form["email"]
         password = request.form["password"]
         confirmpassword = request.form["confirmPassword"]
@@ -75,7 +78,7 @@ def registration():
                 # Hash a password for the first time, with a randomly-generated salt
                 hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt(rounds=12))
                 cursor.execute(
-                    "INSERT INTO persons (userid, first_name, last_name, email, password, gender,phone_number) VALUES (%s, %s, %s, %s, %s, %s,%s)",
+                    "INSERT INTO persons (userid, first_name, last_name, email, password, gender,phone_number, birthday) VALUES (%s, %s, %s, %s, %s, %s,%s, %s)",
                     (
                         username,
                         firstname,
@@ -84,6 +87,7 @@ def registration():
                         hashed_password,
                         gender,
                         phone_number,
+                        birthday,
                     ),
                 )
                 connection.commit()
@@ -124,7 +128,41 @@ def open_stat():
 
 @app.route("/profile-page", methods=["GET", "POST"])
 def open_profile():
-    return render_template("profile-page.html")
+    '''
+    #show the information in the database 
+    cursor.execute(
+            "SELECT first_name, last_name, email, password, birthday, gender, phone_number,country, city, bio FROM persons WHERE userid=%s",
+            (session['username'],)
+        )
+    result = cursor.fetchone()
+    
+    first_name = result[0]
+    last_name = result[1]
+    email = result[2]
+    birthday = result[4]
+    gender = result[5]
+    phonenumber = result[6]
+    country = result[7]
+    city = result[8]
+    bio = result[9]
+    if request.method == "POST":
+        userid_ = request.form["username"]
+        firstname_ = request.form["firstname"]
+        lastname_ = request.form["lastname"]
+        email_ = request.form["email"]
+        birthday_ = request.form["birthday"]
+        gender_ = request.form["gender"]
+        phonenumber_ = request.form["phonenumber"]
+        country_ = request.form["country"]
+        city_= request.form["city"]
+        bio_= request.form["bio"]
+
+        old_password_ = request.form["oldpassword"]
+        new_password_ = request.form["newpassword"]
+
+        '''
+    
+    return render_template("profile-page.html", first_name=first_name, last_name= last_name, email=email, birthday=birthday, gender=gender, phonenumber=phonenumber,country=country, city=city, bio=bio)
 
 
 if __name__ == "__main__":

@@ -29,72 +29,80 @@
         <!-- User Name -->
         <div class="input-box">
           <label>User Name</label>
-          <input type="text" placeholder = "User name" value="jana_mohammed" required/> <!-- Change Value -->
+          <input type="text" placeholder = "User name" name = "username" value = "{{ session['username']}}"/> <!-- Change Value -->
         </div>
         <!-- First Name -->
         <div class="input-box">
           <label>First Name</label>
-          <input type="text" placeholder = "First name" value="Jana" required/> <!-- Change Value -->
+          <input type="text" placeholder = "First name" name = "firstname" value = "{{ first_name }}"/> <!-- Change Value -->
         </div>
         <!-- Last Name -->
         <div class="input-box">
           <label>Last Name</label>
-          <input type="text" placeholder = "Last name" value="Mohammed" required/> <!-- Change Value -->
+          <input type="text" placeholder = "Last name" name = "lastname" value = "{{ last_name }}"/> <!-- Change Value -->
         </div>
         <!-- Email -->
         <div class="input-box">
           <label>Email Address</label>
-          <input type="text" placeholder = "Email Address" value="jana.mohammed@gmail.com" required/> <!-- Change Value  -->
+          <input type="text" placeholder = "Email Address" name = "email" value = "{{ email }}"/> <!-- Change Value  -->
         </div>
         <!-- Phone Number -->
         <div class="column">
           <div class="input-box">
             <label>Phone Number</label>
-            <input type="text" value="+201030416936" required/> <!-- Change Value -->
+            <input type="text" name="phonenumber" placeholder = "Phone Number" value = "{{ phonenumber }}"/> <!-- Change Value -->
           </div>
-          <!-- Birth Date -->
+          <!-- Birth Date --> 
           <div class="input-box">
             <label>Birth Date</label>
-            <input type="date" value="11/14/2001" required /> <!-- Birth Date -->
+            <input type="date" name="birthday"  value = "{{ birthday }}"/> <!-- Birth Date -->
           </div>
         </div>
         <!-- Gender -->
         <div class="gender-box">
           <h3>Gender</h3>
           <div class="gender-option">
+           {% if gender == 'M' %}
             <div class="gender">
-              <input type="radio" id="check-male" name="gender" checked />
+              <input type="radio" id="check-male" value="M" name="gender"  checked />
               <label for="check-male">Male</label>
             </div>
             <div class="gender">
-              <input type="radio" id="check-female" name="gender" />
+              <input type="radio" id="check-female" value ="F" name="gender" />
               <label for="check-female">Female</label>
             </div>
+            {% else %}
             <div class="gender">
-              <input type="radio" id="check-other" name="gender" />
-              <label for="check-other">Prefer not to say</label>
+              <input type="radio" id="check-male" value="M" name="gender"  />
+              <label for="check-male">Male</label>
             </div>
+            <div class="gender">
+              <input type="radio" id="check-female" name="gender" value = "F" checked/>
+              <label for="check-female">Female</label>
+            </div>
+            {% endif %}
+
           </div>
         </div>
         <!-- Address -->
         <div class="input-box address">
           <label>Address</label>
           <div class="column">
-            <input type="text" value="Egypt" placeholder="Enter your Country" required /> <!-- Change Value -->
-            <input type="text" value="Monofia" placeholder="Enter your city" required /> <!-- Change Value -->
+            <input type="text" name = "country" placeholder="Enter your Country" value = "{{ country }}"/> <!-- Change Value -->
+            <input type="text" name ="city" placeholder="Enter your city" value = "{{ city }}"/> <!-- Change Value -->
           </div>
         </div>
         <!-- Bio -->
         <div class="input-box" id = "princip">
           <label>Bio</label>
           <div class="column"></div>
-          <input style="height: 10em;" type="text" placeholder = "About you"/> <!-- Change Value  -->
+          <input style="height: 10em;" type="text" placeholder = "About you" name = "bio" value = "{{ bio }}" /> <!-- Change Value  -->
         </div>
         <!-- Update Password -->
         <div class="input-box password">
           <div class="column">
-            <input type="password" placeholder="Old Password" required />
-            <input type="password" placeholder="New Password" required />
+            <input type="password" placeholder="Old Password" name="oldpassword"/>
+            <input type="password" placeholder="New Password" name="newpassword" />
             <button style="margin-top:0.7em;" >Update Password</button>
           </div>
         </div>
