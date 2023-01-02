@@ -124,8 +124,8 @@ body {
   margin-top: 2%;
 }
 .wrapper ul li {
-  background: #262626;
-  width: 130px;
+  background: #4a98e6;
+  width: 120px;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -135,7 +135,7 @@ body {
   position: relative;
 }
 .wrapper ul li:hover {
-  background: crimson;
+  background: #b056e0;
 }
 .wrapper ul ul {
   display: none;

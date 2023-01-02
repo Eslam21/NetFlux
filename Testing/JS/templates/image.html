@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+ 
+
+  function imgloop()
+  {
+       var ar = JSON.parse('{{ path | tojson | safe}}')
+
+    for (i = 0; ar.length > i; i++)
+    {
+      var img = new Image(200, 200);
+      img.src = ar[i];
+
+      var src = document.getElementById("elementid");
+      src.appendChild(img);
+    }
+
+  }
+    
+  </script>
+</head>
+
+<body>
+
+  <h1>Dynamically Bind image in loop</h1>
+ 
+  <div id="elementid">
+  </div>
+ <button onclick="imgloop();">Append Above</button>
+  
+</body>
+
+</html>

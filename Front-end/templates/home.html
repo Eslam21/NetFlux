@@ -89,17 +89,21 @@
           </div>
         </nav>
 
+        {% if 'username' in session %}
         <a href="profile-stat">
           <div class="user-actions">
             <div class="login">Profile</div>
           </div>
         </a>
+        {% endif %}
+
         {% if 'username' not in session %}
         <a href="login">
           <div class="user-actions">
             <div class="login">Log in</div>
           </div>
         </a>
+
         {% else %}
         <a href="logout">
           <div class="user-actions">
