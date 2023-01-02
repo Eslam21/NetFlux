@@ -77,7 +77,7 @@ class Stars {
       a.style.fontSize = "54px";
       a.style.cursor = "pointer";
       a.innerHTML = "&#9734";
-      a.style.color = "green";
+      a.style.color = "#ffffffad";
       a.id = star.id;
 
       if (a.id <= this.numOfRating) {
@@ -163,7 +163,7 @@ function showMovies(movies) {
     let laterId = document.getElementById(`later${id}`);
     watchId.addEventListener("click", () => {
       if (watchId.style.color === "") {
-        watchId.style.color = "green";
+        watchId.style.color = "cyan";
       } else {
         watchId.style.color = "";
       }
@@ -171,7 +171,7 @@ function showMovies(movies) {
 
     heartId.addEventListener("click", () => {
       if (heartId.style.color === "") {
-        heartId.style.color = "orange";
+        heartId.style.color = "red";
       } else {
         heartId.style.color = "";
       }
@@ -179,7 +179,7 @@ function showMovies(movies) {
 
     laterId.addEventListener("click", () => {
       if (laterId.style.color === "") {
-        laterId.style.color = "lightgreen";
+        laterId.style.color = "white";
       } else {
         laterId.style.color = "";
       }
@@ -232,13 +232,8 @@ function showRating() {
 }
 
 function getClassByRate(vote) {
-  if (vote >= 7) {
-    return "green";
-  } else if (vote >= 5) {
-    return "orange";
-  } else {
-    return "red";
-  }
+ 
+ return "white"
 }
 
 form.addEventListener("submit", (e) => {
