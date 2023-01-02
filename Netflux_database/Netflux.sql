@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `netflux` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `netflux`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: netflux
@@ -96,6 +94,7 @@ CREATE TABLE `favourites` (
 
 LOCK TABLES `favourites` WRITE;
 /*!40000 ALTER TABLE `favourites` DISABLE KEYS */;
+INSERT INTO `favourites` VALUES ('nohaa',5),('yoyobarakat',5),('nohaa',11),('yoyobarakat',11),('nohaa',12),('nohaa',13),('lulo',114),('lulo',115),('yoyobarakat',115),('lulo',116),('MyriamB',140),('MyriamB',141),('MyriamB',142),('Yaso',300),('Yaso',301),('Yaso',302),('Yaso',1901);
 /*!40000 ALTER TABLE `favourites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,6 +187,7 @@ CREATE TABLE `persons` (
 
 LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons` DISABLE KEYS */;
+INSERT INTO `persons` VALUES ('lulo','Luna','Micheal','lolo@gmail.com','$2b$12$vSlBTJjeuLuuSMARc5vHRuLombr5.gjT4cMeyviLFFOEhTA0Q3JEC',NULL,'user','F','123'),('MyriamB','Mariam','Barakat','Ma.Barakat@nu.edu.eg','$2b$12$Lv6T82JYqxYKwiVW9hR8t./JzcVOn7INGWt9r3luGzLsMmt2Yavim',NULL,'user','F','123'),('nohaa','Noha','saleh','nono@gmail.com','$2b$12$KElJx.Nzr8t48M8yCpzLAu.pBaPwUa5BxZIq817a8uB.jGIQ2W/YC',NULL,'user','F','+201091300770'),('Yaso','Yasmeen','Amr','yaso@cottoncandy.com','$2b$12$etduGgUQ9aPHH5UUtq./f.OnEe7tJrYAEGmeB2gfpIAKV4h6KhCQC',NULL,'user','F','123'),('yoyobarakat','youssof','Amr','yoyoslanderman@gmail.com','$2b$12$qi7uE58trmJg7/4iWHg9HuB6WrebKjBLKy8bZfgi8cLo5qgjKa7ZS',NULL,'user','M','123');
 /*!40000 ALTER TABLE `persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,6 +215,7 @@ CREATE TABLE `rated` (
 
 LOCK TABLES `rated` WRITE;
 /*!40000 ALTER TABLE `rated` DISABLE KEYS */;
+INSERT INTO `rated` VALUES ('nohaa',5,5),('nohaa',11,3);
 /*!40000 ALTER TABLE `rated` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,6 +242,7 @@ CREATE TABLE `watched` (
 
 LOCK TABLES `watched` WRITE;
 /*!40000 ALTER TABLE `watched` DISABLE KEYS */;
+INSERT INTO `watched` VALUES ('nohaa',5),('yoyobarakat',5),('nohaa',11),('yoyobarakat',11),('nohaa',12),('nohaa',13),('nohaa',14),('nohaa',22),('nohaa',70),('nohaa',74),('lulo',114),('lulo',115),('yoyobarakat',115),('lulo',116),('MyriamB',140),('yoyobarakat',140),('MyriamB',141),('MyriamB',142),('Yaso',300),('Yaso',301),('Yaso',302),('MyriamB',319),('lulo',990),('lulo',996),('Yaso',1901);
 /*!40000 ALTER TABLE `watched` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,6 +269,7 @@ CREATE TABLE `watchlist` (
 
 LOCK TABLES `watchlist` WRITE;
 /*!40000 ALTER TABLE `watchlist` DISABLE KEYS */;
+INSERT INTO `watchlist` VALUES ('lulo',69),('lulo',70),('yoyobarakat',70),('yoyobarakat',71),('MyriamB',80),('MyriamB',81),('Yaso',90),('nohaa',490),('nohaa',492),('nohaa',500),('nohaa',580),('Yaso',580);
 /*!40000 ALTER TABLE `watchlist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -279,4 +282,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-30  9:42:36
+-- Dump completed on 2023-01-02 15:01:01
