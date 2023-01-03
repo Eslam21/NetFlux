@@ -102,22 +102,22 @@ def registration():
     return render_template("registration.html")
 
 
-@app.route("/favorite", methods=["GET", "POST"])
+@app.route("/liked", methods=["GET", "POST"])
 def favorite():
     return render_template("home.html")
 
 
-@app.route("/history", methods=["GET", "POST"])
+@app.route("/watched", methods=["GET", "POST"])
 def history():
     return render_template("home.html")
 
 
-@app.route("/recommended", methods=["GET", "POST"])
+@app.route("/recommend", methods=["GET", "POST"])
 def recommended():
     return render_template("home.html")
 
 
-@app.route("/watchlist", methods=["GET", "POST"])
+@app.route("/watch_list", methods=["GET", "POST"])
 def watch_list():
     return render_template("home.html")
 
