@@ -146,7 +146,6 @@ def open_profile():
     city = result[8]
     bio = result[9]
     if request.method == "POST":
-        #userid_ = request.form["username"]
         firstname_ = request.form["firstname"]
         lastname_ = request.form["lastname"]
         email_ = request.form["email"]
