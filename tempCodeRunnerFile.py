@@ -44,3 +44,11 @@ result_count_fav=cursor.fetchone()
 
 print(result_count_fav[0])
 
+cursor.execute("select sum(runtime) from movies where movieid in  (select movieid from watched where userid=%s) ",('Nohaa',))
+
+count_watched=cursor.fetchone() 
+
+print(count_watched[0])
+
+
+
