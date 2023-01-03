@@ -34,7 +34,13 @@ cursor = connection.cursor()
 
 cursor.execute("select count(movieid) from watched where userid=%s",('Nohaa',))
 
-result=cursor.fetchone() 
+result_count_watched=cursor.fetchone() 
 
-print(result[0])
+print(result_count_watched[0])
+
+cursor.execute("select count(movieid) from favourites where userid=%s",('Nohaa',))
+
+result_count_fav=cursor.fetchone() 
+
+print(result_count_fav[0])
 
