@@ -104,22 +104,22 @@ def registration():
 
 @app.route("/favorite", methods=["GET", "POST"])
 def favorite():
-    return render_template("favorite.html")
+    return render_template("home.html")
 
 
 @app.route("/history", methods=["GET", "POST"])
 def history():
-    return render_template("history.html")
+    return render_template("home.html")
 
 
 @app.route("/recommended", methods=["GET", "POST"])
 def recommended():
-    return render_template("recommended.html")
+    return render_template("home.html")
 
 
 @app.route("/watchlist", methods=["GET", "POST"])
 def watch_list():
-    return render_template("watch_list.html")
+    return render_template("home.html")
 
 
 @app.route("/profile-stat", methods=["GET", "POST"])
@@ -128,7 +128,7 @@ def open_stat():
 
 @app.route("/profile-page", methods=["GET", "POST"])
 def open_profile():
-    '''
+    
     #show the information in the database 
     cursor.execute(
             "SELECT first_name, last_name, email, password, birthday, gender, phone_number,country, city, bio FROM persons WHERE userid=%s",
@@ -146,7 +146,7 @@ def open_profile():
     city = result[8]
     bio = result[9]
     if request.method == "POST":
-        userid_ = request.form["username"]
+        #userid_ = request.form["username"]
         firstname_ = request.form["firstname"]
         lastname_ = request.form["lastname"]
         email_ = request.form["email"]
@@ -160,8 +160,12 @@ def open_profile():
         old_password_ = request.form["oldpassword"]
         new_password_ = request.form["newpassword"]
 
-        '''
-    
+        cursor.execute(
+        "UPDATE persons SET first_name = %s, last_name = %s , email=%s, birthday=%s, gender=%s, phone_number=%s,country=%s, city=%s, bio=%s WHERE userid=%s",
+        (firstname_, lastname_, email_,birthday_, gender_, phonenumber_,country_, city_ , bio_  ,session['username']))
+        connection.commit()
+           
+        
     return render_template("profile-page.html", first_name=first_name, last_name= last_name, email=email, birthday=birthday, gender=gender, phonenumber=phonenumber,country=country, city=city, bio=bio)
 
 
