@@ -178,6 +178,9 @@ CREATE TABLE `persons` (
   `person_type` enum('user','admin') DEFAULT 'user',
   `gender` enum('M','F') DEFAULT NULL,
   `phone_number` varchar(13) NOT NULL,
+  `country` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `bio` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -189,7 +192,7 @@ CREATE TABLE `persons` (
 
 LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons` DISABLE KEYS */;
-INSERT INTO `persons` VALUES ('lulo','Luna','Micheal','lolo@gmail.com','$2b$12$vSlBTJjeuLuuSMARc5vHRuLombr5.gjT4cMeyviLFFOEhTA0Q3JEC',NULL,'user','F','123'),('MyriamB','Mariam','Barakat','Ma.Barakat@nu.edu.eg','$2b$12$Lv6T82JYqxYKwiVW9hR8t./JzcVOn7INGWt9r3luGzLsMmt2Yavim',NULL,'user','F','123'),('nohaa','Noha','saleh','nono@gmail.com','$2b$12$KElJx.Nzr8t48M8yCpzLAu.pBaPwUa5BxZIq817a8uB.jGIQ2W/YC',NULL,'user','F','+201091300770'),('Yaso','Yasmeen','Amr','yaso@cottoncandy.com','$2b$12$etduGgUQ9aPHH5UUtq./f.OnEe7tJrYAEGmeB2gfpIAKV4h6KhCQC',NULL,'user','F','123'),('yoyobarakat','youssof','Amr','yoyoslanderman@gmail.com','$2b$12$qi7uE58trmJg7/4iWHg9HuB6WrebKjBLKy8bZfgi8cLo5qgjKa7ZS',NULL,'user','M','123');
+INSERT INTO `persons` VALUES ('Es2001','Eslam','Ahmed','es@gmail.com','$2b$12$nN7iTYaRCwob8uwRlAMKUuytVPVsRIePeujN0XtplC1mStbVqNjhG',NULL,'user','M','1234',NULL,NULL,NULL),('lulo','Luna','Micheal','lolo@gmail.com','$2b$12$vSlBTJjeuLuuSMARc5vHRuLombr5.gjT4cMeyviLFFOEhTA0Q3JEC','2000-01-02','user','F','123',NULL,NULL,NULL),('MyriamB','Mariam','Barakat','Ma.Barakat@nu.edu.eg','$2b$12$Lv6T82JYqxYKwiVW9hR8t./JzcVOn7INGWt9r3luGzLsMmt2Yavim','2000-01-02','user','F','123',NULL,NULL,NULL),('nohaa','Noha','saleh','nono@gmail.com','$2b$12$KElJx.Nzr8t48M8yCpzLAu.pBaPwUa5BxZIq817a8uB.jGIQ2W/YC','2000-01-02','user','F','+201091300770',NULL,NULL,NULL),('roro','Rawan','Faramawy','roro@gmail.com','$2b$12$mP3k8zOEvE/47uGBY0GQXupQyS5ZEezuIFHLNzn4.t6RZEyxDJDmW','2022-09-02','user','F','+201091300770',NULL,NULL,NULL),('Yaso','Yasmeen','Amr','yaso@cottoncandy.com','$2b$12$etduGgUQ9aPHH5UUtq./f.OnEe7tJrYAEGmeB2gfpIAKV4h6KhCQC','2000-01-02','user','F','123',NULL,NULL,NULL),('yoyobarakat','youssof','Amr','yoyoslanderman@gmail.com','$2b$12$qi7uE58trmJg7/4iWHg9HuB6WrebKjBLKy8bZfgi8cLo5qgjKa7ZS','2000-01-02','user','M','123',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-02 15:01:01
+-- Dump completed on 2023-01-03 13:04:20
