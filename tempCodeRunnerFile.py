@@ -50,5 +50,13 @@ count_watched=cursor.fetchone()
 
 print(count_watched[0])
 
+cursor.execute("select genres, count(genres) from genres where movieid in  (select movieid from watched where userid=%s) group by genres HAVING COUNT(genres) > 1",('Nohaa',))
+
+count_watched=cursor.fetchall() 
+
+print(count_watched)
+
+
+
 
 
