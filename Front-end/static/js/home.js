@@ -152,7 +152,6 @@ function showMovies(movies) {
           <button class="myButton" id="later${id}"><ion-icon name="time"></ion-icon></ion-icon></button>
      </nav>
      <div class="rating-container">
-      <span class="star-heading">Rated</span>
       <div id='stars-container' class=${className}></div>
      </div>
      `;
