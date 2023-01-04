@@ -16,6 +16,19 @@
     />
   </head>
   <body>
+    {% with msg = get_flashed_messages() %}
+    {% if msg %} 
+      {% for message in msg %}
+        {% if message == "Updated Successfully" %}
+        <div class="success">{{ message }}</div>
+        {% else %}
+        <div class="error">{{ message }}</div>
+        {% endif %}
+      {% endfor %}
+      
+    {% endif %} 
+    {% endwith %}
+    
     <header class="header">
       <div class="container">
         <div class="logo">Netflux</div>

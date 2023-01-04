@@ -126,6 +126,7 @@ def watch_list():
 
 @app.route("/profile-stat", methods=["GET", "POST"])
 def open_stat():
+    
     if session['type'] == 'admin':
         # number of total  movies
         cursor.execute("select count(*) from movies")
@@ -147,6 +148,15 @@ def open_stat():
         return render_template("profile-page-admin.html", popular_movies = list_famous ,no_of_movies = no_of_movies, no_users = no_users ,m = males, f= females )
         
     else:
+        
+        if request.method == "POST":
+            if request.form['delete_account'] == "Delete Account":
+                cursor.execute("delete from persons where userid=%s",(session['username'],))
+                cursor.commit()
+                flash('Your account is deleted :(')
+                
+                return redirect(url_for("logout"))
+        
         #country
         cursor.execute("select country from persons where userid=%s",(session['username'],))
         result_country=cursor.fetchone()[0]
@@ -162,7 +172,10 @@ def open_stat():
         #piechart
         all_movies = [['Genre', 'Number of Films']]
         cursor.execute("select genres, count(genres) from genres where movieid in  (select movieid from watched where userid=%s) group by genres HAVING COUNT(genres) > 1",(session['username'],))
-        all_movies.extend(cursor.fetchall()) 
+        all_movies.extend(cursor.fetchall())
+
+       
+
         return render_template("profile-stat.html",list_movies = all_movies ,count_runtime=count_runtime,count_fav = result_count_fav ,count_watched= result_count_watched, country=result_country )
 
 @app.route("/profile-page", methods=["GET", "POST"])
@@ -223,8 +236,6 @@ def open_profile():
             return redirect(url_for('open_profile'))
   
     return render_template("profile-page.html", a = alert ,first_name=first_name, last_name= last_name, email=email, birthday=birthday, gender=gender, phonenumber=phonenumber,country=country, city=city, bio=bio)
-
-
 
 
 
