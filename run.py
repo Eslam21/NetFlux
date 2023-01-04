@@ -141,7 +141,7 @@ def open_stat():
         females = cursor.fetchone()[0]
         #top 5 popular movies 
         list_famous = [['movies', 'popularity']]
-        cursor.execute("select original_title, popularity from movies ORDER BY popularity DESC lIMIT 10")
+        cursor.execute("select title, popularity from movies ORDER BY popularity DESC lIMIT 10")
         list_famous.extend(cursor.fetchall())
 
         return render_template("profile-page-admin.html", popular_movies = list_famous ,no_of_movies = no_of_movies, no_users = no_users ,m = males, f= females )
@@ -167,7 +167,7 @@ def open_stat():
 
 @app.route("/profile-page", methods=["GET", "POST"])
 def open_profile():
-    
+    alert=''
     #show the information in the database 
     cursor.execute(
             "SELECT first_name, last_name, email, password, birthday, gender, phone_number,country, city, bio FROM persons WHERE userid=%s",
@@ -198,14 +198,34 @@ def open_profile():
 
         old_password_ = request.form["oldpassword"]
         new_password_ = request.form["newpassword"]
+    
+        if old_password_ == "" and new_password_ == "":
+            cursor.execute(
+            "UPDATE persons SET first_name = %s, last_name = %s , email=%s, birthday=%s, gender=%s, phone_number=%s,country=%s, city=%s, bio=%s WHERE userid=%s",
+            (firstname_, lastname_, email_,birthday_, gender_, phonenumber_,country_, city_ , bio_  ,session['username']))
+            connection.commit()
+            flash("Updated Successfully")
+            return redirect(url_for('open_profile'))
+        else:
+            old_password_ = old_password_.encode('utf-8')
+            #check password
+            cursor.execute("SELECT password FROM persons WHERE userid= %s", (session['username'],))
+            result = cursor.fetchone()[0]
+            if bcrypt.checkpw(old_password_ , result.encode('utf-8')):
+                hashed_password = bcrypt.hashpw(new_password_.encode(), bcrypt.gensalt(rounds=12))
+                cursor.execute(
+                "UPDATE persons SET password = %s, first_name = %s, last_name = %s , email=%s, birthday=%s, gender=%s, phone_number=%s,country=%s, city=%s, bio=%s WHERE userid=%s",
+                (hashed_password, firstname_, lastname_, email_,birthday_, gender_, phonenumber_,country_, city_ , bio_  ,session['username']))
+                connection.commit()
+                flash("Updated Successfully")
+            else:
+               flash("Incorrect password, please try again")
+            return redirect(url_for('open_profile'))
+  
+    return render_template("profile-page.html", a = alert ,first_name=first_name, last_name= last_name, email=email, birthday=birthday, gender=gender, phonenumber=phonenumber,country=country, city=city, bio=bio)
 
-        cursor.execute(
-        "UPDATE persons SET first_name = %s, last_name = %s , email=%s, birthday=%s, gender=%s, phone_number=%s,country=%s, city=%s, bio=%s WHERE userid=%s",
-        (firstname_, lastname_, email_,birthday_, gender_, phonenumber_,country_, city_ , bio_  ,session['username']))
-        connection.commit()
-           
-        
-    return render_template("profile-page.html", first_name=first_name, last_name= last_name, email=email, birthday=birthday, gender=gender, phonenumber=phonenumber,country=country, city=city, bio=bio)
+
+
 
 
 if __name__ == "__main__":
