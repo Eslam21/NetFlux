@@ -27,7 +27,7 @@ def login():
         #password the user entered, still needs to be checked
         password = request.form["Password"].encode('utf-8')
         cursor.execute(
-            "SELECT password FROM persons WHERE userid=%s",
+            "SELECT password, person_type FROM persons WHERE userid=%s",
             (username,)
         )
         
@@ -36,7 +36,8 @@ def login():
        
         # check if this account exists and the password matches
         if result != None and bcrypt.checkpw(password,result[0].encode('utf-8')):
-            session['username'] = username   #have the date here 
+            session['username'] = username   #have the date here
+            session['type'] =  result[1]
             return redirect(url_for("home"))
         
         else:
@@ -93,6 +94,7 @@ def registration():
                 connection.commit()
                 msg = "You have successfully registered !"
                 session['username'] = username 
+                session['type'] = 'user'
                 return redirect(url_for("home"))
             except:
                 msg = "Account already exists !"
@@ -124,7 +126,44 @@ def watch_list():
 
 @app.route("/profile-stat", methods=["GET", "POST"])
 def open_stat():
-    return render_template("profile-stat.html")
+    if session['type'] == 'admin':
+        # number of total  movies
+        cursor.execute("select count(*) from movies")
+        no_of_movies = cursor.fetchone()[0]
+        #number of users in database
+        cursor.execute("select count(*) from persons WHERE person_type = 'user'")
+        no_users = cursor.fetchone()[0]
+        #number of males and females
+        cursor.execute("select count(*) from persons WHERE person_type = 'user' AND gender = 'M' ")
+        males = cursor.fetchone()[0]
+         
+        cursor.execute("select count(*) from persons WHERE person_type = 'user' AND gender = 'F' ")
+        females = cursor.fetchone()[0]
+        #top 5 popular movies 
+        list_famous = [['movies', 'popularity']]
+        cursor.execute("select original_title, popularity from movies ORDER BY popularity DESC lIMIT 10")
+        list_famous.extend(cursor.fetchall())
+
+        return render_template("profile-page-admin.html", popular_movies = list_famous ,no_of_movies = no_of_movies, no_users = no_users ,m = males, f= females )
+        
+    else:
+        #country
+        cursor.execute("select country from persons where userid=%s",(session['username'],))
+        result_country=cursor.fetchone()[0]
+        # films watched
+        cursor.execute("select count(movieid) from watched where userid=%s",(session['username'],))
+        result_count_watched=cursor.fetchone()[0]
+        #number of favourites
+        cursor.execute("select count(movieid) from favourites where userid=%s",(session['username'],))
+        result_count_fav=cursor.fetchone()[0] 
+        #total runtime
+        cursor.execute("select sum(runtime) from movies where movieid in  (select movieid from watched where userid=%s) ",(session['username'],))
+        count_runtime=cursor.fetchone()[0]
+        #piechart
+        all_movies = [['Genre', 'Number of Films']]
+        cursor.execute("select genres, count(genres) from genres where movieid in  (select movieid from watched where userid=%s) group by genres HAVING COUNT(genres) > 1",(session['username'],))
+        all_movies.extend(cursor.fetchall()) 
+        return render_template("profile-stat.html",list_movies = all_movies ,count_runtime=count_runtime,count_fav = result_count_fav ,count_watched= result_count_watched, country=result_country )
 
 @app.route("/profile-page", methods=["GET", "POST"])
 def open_profile():
@@ -146,6 +185,7 @@ def open_profile():
     city = result[8]
     bio = result[9]
     if request.method == "POST":
+        #userid_ = request.form["username"]
         firstname_ = request.form["firstname"]
         lastname_ = request.form["lastname"]
         email_ = request.form["email"]

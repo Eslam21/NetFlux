@@ -1,0 +1,119 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin Profile</title>
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile-page-admin.css')}}" />
+  </head>
+  <body>
+    <section class="container" style="width: 1200px;">
+      <!-- Account Setting -->
+      <header>My Proifle</header>
+      <div action="#" class="form">
+        <!--================================================================-->
+        <!-- Profile Photo -->
+        <div class="container" style="height: 170px;">
+          <div class="avatar-upload" style="margin-top: -5px;">
+              <div class="avatar-preview">
+                  <div id="imagePreview" style="background-image: url('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');"> <!-- Change Value -->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--================================================================-->
+        </head>
+        <body>
+        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 40px;">{{ session['username'] }}</p> <!-- Change Value -->
+        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 35px;"> Admin</p> <!-- Change Value -->
+        <!-- Card One -->
+        <div class="column" style="margin-left: 50;">
+          <div class = hello style="
+            background-color: #E4D9F7;
+            border-radius: 8px;
+            box-shadow: 10 20 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            color: #3A00A0;
+            padding: 50px; 
+            margin: 20px;
+            height: 300px;
+            font-size: 60px;
+            text-align: center;">
+            {{ no_of_movies }}<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Films in NetFlux</strong></p>
+          </div>
+          <!-- Card Two -->
+          <div style="
+            background-color: #E4D9F7;
+            border-radius: 8px;
+            box-shadow: 10 20 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            color: #3A00A0;
+            padding: 50px; 
+            margin: 20px;
+            height: 300px;
+            font-size: 60px;
+            text-align: center;">
+            {{ no_users }}<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>User in NetFlux</strong></p>
+          </div>
+          <!-- Card Three -->
+            <div style="
+            background-color: #E4D9F7;
+            border-radius: 8px;
+            box-shadow: 10 20 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            color: #3A00A0;
+            padding: 50px; 
+            margin: 20px;
+            height: 300px;
+            font-size: 60px;
+            text-align: center;">
+            {{ m }}<p style="font-size: 15px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Male</strong></p>
+            {{ f }}<p style="font-size: 15px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Female</strong></p>
+          </div>
+        </div>
+        <!--------------------------------------------------------->
+        <html>
+        <head>
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+          <script type="text/javascript">
+            google.charts.load('current', {'packages':['bar']});
+            google.charts.setOnLoadCallback(drawStuff);
+            // Top 10 movies popularity
+
+            var data1 = JSON.parse('{{ popular_movies | tojson | safe}}');
+
+            function drawStuff() {
+              var data = new google.visualization.arrayToDataTable(  data1 );
+              var options = {
+                title: 'Chess opening moves',
+                width: 900,
+                legend: { position: 'none' },
+                chart: { title: 'Top movies popularity',
+                        subtitle: 'Popularity by percentage' },
+                bars: 'horizontal', // Required for Material Bar Charts.
+                axes: {
+                  x: {
+                    0: { side: 'top', label: 'Percentage'} // Top x-axis.
+                  }
+                },
+                bar: { groupWidth: "90%" }
+              };
+              var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+              chart.draw(data, options);
+            };
+          </script>
+        </head>
+        <body>
+          <div id="top_x_div" style="width: 900px; height: 500px;margin-left: 115px;"></div>
+        </body>
+      </html>
+        <!--------------------------------------------------------->
+        <!-- Update profile information -->
+        <a href="profile-page">
+        <button style="margin-top:2.5em; width: 100px; border-radius: 15%;margin-left: 500px;">Edit Profile</button>
+        </a>
+      </div>
+    </section>
+  </body>
+</html>

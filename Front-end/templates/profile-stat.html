@@ -25,8 +25,8 @@
       <!--================================================================-->
         </head>
         <body>
-        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 40px;">Jana Mohammed</p> <!-- Change Value -->
-        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 25px;">Egypt</p> <!-- Change Value -->
+        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 40px;">{{session['username']}}</p> <!-- Change Value -->
+        <p style="text-align: center; font-size: 30px;color: #2B0077; margin-top: 25px;">{{ country }}</p> <!-- Change Value -->
         <!-- Card One -->
         <div class="column">
           <div class = hello style="
@@ -40,7 +40,7 @@
             height: 270px;
             font-size: 60px;
             text-align: center;">
-            85
+            {{ count_watched }}
            <p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Film Watched</strong></p>
           </div>
           <!-- Card Two -->
@@ -55,7 +55,7 @@
             height: 270px;
             font-size: 60px;
             text-align: center;">
-            30<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Film Favorite</strong></p>
+           {{count_fav}}<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Film Favorite</strong></p>
           </div>
           <!-- Card Three -->
           <div style="
@@ -69,7 +69,7 @@
             height: 270px;
             font-size: 60px;
             text-align: center;">
-            100<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Hours Watched</strong></p>
+           {{ count_runtime }}<p style="font-size: medium; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><strong>Hours Watched</strong></p>
           </div>
         </div>
         <!--------------------------------------------------------->
@@ -112,16 +112,12 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
+      var data1 = JSON.parse('{{ list_movies | tojson | safe}}');
+     
+
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Genre', 'Number of Films'],
-          ['Action',     20],
-          ['Drama',      5],
-          ['Horror',  15],
-          ['Documentry', 20],
-          ['Science Fiction',    35]
-        ]);
+        var data = google.visualization.arrayToDataTable( data1 );
 
         var options = {
           title: 'Genres Watched'
