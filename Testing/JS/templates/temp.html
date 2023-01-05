@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Netflux</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/home.css')}}"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">Netflux</div>
+
+        <nav class="menu">
+          <a href="recommend">
+            <ion-icon name="videocam-outline"></ion-icon>
+            recommend
+          </a>
+          <a href="liked">
+            <ion-icon name="heart-outline"></ion-icon>
+            Favorite
+          </a>
+
+          <a href="watch_list">
+            <ion-icon name="bookmark-outline"></ion-icon>
+            Watch List
+          </a>
+
+          <a href="watched">
+            <ion-icon name="reload-outline"></ion-icon>
+            History
+          </a>
+
+          <form id="form">
+            <input
+              type="text"
+              autocomplete="off"
+              id="search"
+              placeholder="Search"
+              class="search"
+            />
+          </form>
+
+          <div class="wrapper">
+            <ul>
+              <li>
+                <ion-icon name="funnel-outline"></ion-icon>
+                <ul>
+                  <li>
+                    Rating
+                    <ul>
+                      <li>Ascending</li>
+                      <li>Descending</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Genres
+                    <ul>
+                      <li>Action</li>
+                      <li>Adventure</li>
+                      <li>Comedy</li>
+                      <li>Drama</li>
+                      <li>Fantasy</li>
+                      <li>Horror</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Year
+                    <ul>
+                      <li>Ascending</li>
+                      <li>Descending</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Population
+                    <ul>
+                      <li>Ascending</li>
+                      <li>Descending</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        {% if 'username' in session %}
+        <a href="profile-stat">
+          <div class="user-actions">
+            <div class="login">Profile</div>
+          </div>
+        </a>
+        {% endif %}
+
+        {% if 'username' not in session %}
+        <a href="login">
+          <div class="user-actions">
+            <div class="login">Log in</div>
+          </div>
+        </a>
+
+        {% else %}
+        <a href="logout">
+          <div class="user-actions">
+            <div class="login">Log out</div>
+          </div>
+        </a>
+        {% endif %}
+
+        <label class="openmenu">
+          <ion-icon name="menu-outline"></ion-icon>
+        </label>
+      </div>
+    </header>
+
+    <div class="mobile-menu">
+      <div class="head">
+        <div class="logo">Netflux</div>
+        <label class="closemenu">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </label>
+      </div>
+      <nav class="menu">
+        <a href="liked"> Loved Movies </a>
+
+        <a href="watch_list"> Saved Movies </a>
+
+        <a href="watched"> History </a>
+      </nav>
+
+      <a href="login">
+        <div class="user-actions">
+          <div class="login">Log in</div>
+        </div>
+      </a>
+    </div>
+
+    <main id="main"></main>
+
+    <!-- JS CODE -->
+    <script src="{{url_for('static', filename='home.js')}}"></script>
+
+    <!-- IMPORTS ICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

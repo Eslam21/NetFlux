@@ -8,8 +8,7 @@ connection = mysql.connector.connect(user='SWE', password='123456789000',host='l
 cursor = connection.cursor()
 
 
-app = Flask(__name__)
-
+app = Flask(__name__, static_folder='static',template_folder="templates")
 @app.route('/')
 @app.route("/home")
 def home():
@@ -50,6 +49,18 @@ def hello_world():
 
     return render_template("visualize.html", movies = movies, vote_average = vote_average, barColors = barColors)
 
+@app.route('/temp')
+def method_name():
+    
+    cursor.execute("select * from movies order by release_date desc ")
+    movies=cursor.fetchall() 
+    id = [i[0] for i in movies]
+    title = [i[2] for i in movies]
+    Overview = [i[3] for i in movies]
+    path = [i[5] for i in movies]
+    rating = [float(i[9]) for i in movies]
+    
+    return render_template("temp.html",title=title,Overview=Overview,path=path,rating=rating,movies=movies,id=id)
 
 if __name__ == '__main__':
    

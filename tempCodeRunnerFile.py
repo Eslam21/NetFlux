@@ -9,7 +9,7 @@ import mysql.connector
 connection = mysql.connector.connect(user="SWE", password="123456789000", host="localhost", database="netflux")
 
 cursor = connection.cursor()
-# cursor.execute("SELECT title FROM movies")
+cursor.execute("SELECT title FROM movies")
 
 # similar=process.extract("space",choices=list(map(lambda movies: movies[0],cursor.fetchall())),limit=None)
 # similar.sort(reverse = True, key = lambda t: t[1])
@@ -30,9 +30,11 @@ cursor = connection.cursor()
 
 # print(ids)   
 
+cursor.execute("select * from movies order by release_date desc ")
 
 
-cursor.execute("select count(movieid) from watched where userid=%s",('Nohaa',))
+
+cursor.execute("delete from persons where userid=%s",('yoyobarakat',))
 
 result_count_watched=cursor.fetchone() 
 
