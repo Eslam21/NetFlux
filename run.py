@@ -152,7 +152,7 @@ def open_stat():
         if request.method == "POST":
             if request.form['delete_account'] == "Delete Account":
                 cursor.execute("delete from persons where userid=%s",(session['username'],))
-                cursor.commit()
+                connection.commit()
                 flash('Your account is deleted :(')
                 
                 return redirect(url_for("logout"))
